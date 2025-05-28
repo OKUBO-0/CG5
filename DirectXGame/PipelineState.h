@@ -1,6 +1,6 @@
 #pragma once
 
-#include <d3dx12.h>
+#include <d3dx12.h> // ID3D12PipelineState
 
 class PipelineState {
 public:
