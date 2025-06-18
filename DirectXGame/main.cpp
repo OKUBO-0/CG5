@@ -63,7 +63,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// 頂点インデックスデータの準備 --------------------
 	uint16_t indices[] = {
 		0, 1, 2,
-		2, 1, 3,
+		3, 2, 1,
 	};
 
 	// VertexBuffer(VertexResource, VertexResourceView)の生成 --------------------
@@ -127,7 +127,7 @@ void SetupPipelineState(PipelineState& pipelineState, RootSignature& rootSignatu
 	D3D12_INPUT_ELEMENT_DESC inputElementDescs[2] = {};
 	inputElementDescs[0].SemanticName = "POSITION";
 	inputElementDescs[0].SemanticIndex = 0;
-	inputElementDescs[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	inputElementDescs[0].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 	inputElementDescs[0].AlignedByteOffset = D3D12_APPEND_ALIGNED_ELEMENT;
 
 	inputElementDescs[1].SemanticName = "TEXCOORD";
