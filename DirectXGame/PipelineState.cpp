@@ -1,6 +1,8 @@
 #include "PipelineState.h"
 #include "KamataEngine.h"
 
+#include <cassert>
+
 using namespace KamataEngine;
 
 // PipelineStateを生成する
@@ -12,6 +14,12 @@ void PipelineState::Create(D3D12_GRAPHICS_PIPELINE_STATE_DESC graphicsPipelineSt
 	HRESULT hr = dxCommon->GetDevice()->CreateGraphicsPipelineState(
 		         &graphicsPipelineStateDesc, IID_PPV_ARGS(&graphicsPipelineState));
 	assert(SUCCEEDED(hr));
+
+	// 'hr' を参照するコードを追加して警告を回避
+	if (FAILED(hr)) {
+		// エラー処理を追加
+		OutputDebugString(L"Failed to create committed resource.\n");
+	}
 
 	// 生成した PipelineState をとっておく
 	pipelineState_ = graphicsPipelineState;

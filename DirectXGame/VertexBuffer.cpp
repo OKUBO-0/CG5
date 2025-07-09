@@ -35,6 +35,12 @@ void VertexBuffer::Create(const UINT size, const UINT stride) {
 		D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&vertexResource));
 	assert(SUCCEEDED(hr)); // 上手くいかなかったときは起動できない
 
+	// 'hr' を参照するコードを追加して警告を回避
+	if (FAILED(hr)) {
+		// エラー処理を追加
+		OutputDebugString(L"Failed to create committed resource.\n");
+	}
+
 	// 生成した頂点リソースはとっておく
 	vertexBuffer_ = vertexResource;
 

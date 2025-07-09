@@ -8,6 +8,7 @@
 
 #include <Windows.h>
 #include <d3dcompiler.h>
+#include <cassert>
 
 using namespace KamataEngine;
 
@@ -418,6 +419,12 @@ ID3D12Resource* CreateRenderTextureResource(ID3D12Device* device, uint32_t width
 	);
 	assert(SUCCEEDED(hr));
 
+	// 'hr' を参照するコードを追加して警告を回避
+	if (FAILED(hr)) {
+		// エラー処理を追加
+		OutputDebugString(L"Failed to create committed resource.\n");
+	}
+
 	return resource;
 }
 
@@ -456,6 +463,12 @@ ID3D12Resource* CreateDepthStencilTextureResource(ID3D12Device* device, int32_t 
 	    IID_PPV_ARGS(&resource)           // 作成するResourceポインタへのポインタ
 	);
 	assert(SUCCEEDED(hr));
+
+	// 'hr' を参照するコードを追加して警告を回避
+	if (FAILED(hr)) {
+		// エラー処理を追加
+		OutputDebugString(L"Failed to create committed resource.\n");
+	}
 
 	return resource;
 }
